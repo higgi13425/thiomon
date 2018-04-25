@@ -31,6 +31,8 @@ data %>%
   ggplot(aes(x=year, y=count, col=ord_test)) +
   geom_point()
 
+ggsave("counts_byyear.png", width = 9, height = 6, units = "in")
+
 #select doctor_id and last_name for later joining
 data %>% 
   select(c(doctor_id, last_name)) %>% 
@@ -61,4 +63,6 @@ counts %>%
   xlab("Count of Tests Ordered") +
   ylab("") +
   theme_bw() 
+
+ggsave("counts_bydoc.png", width = 9, height = 6, units = "in")
 
