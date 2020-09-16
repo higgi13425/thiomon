@@ -43,8 +43,8 @@ names
 data %>% 
   group_by(doctor_id, ord_test) %>% 
   summarize(count= n()) %>% 
-  spread(key = ord_test, value = count) %>% 
-  mutate_if(is.integer, funs(replace(., is.na(.), 0))) %>% 
+  pivot_wider(names_from = ord_test, values_from = count) %>% 
+  mutate(across(where(is.integer), ~replace(., is.na(.), 0))) %>% 
   rename(metab = `6MMP`, thiomon= TMON) %>% 
   mutate(total = metab + thiomon) %>% 
   mutate(cost = metab *210) %>% 
